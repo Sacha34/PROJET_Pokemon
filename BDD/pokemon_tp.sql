@@ -27,7 +27,6 @@ CREATE TABLE `attack` (
   `attack_name` varchar(79) NOT NULL,
   `damages` smallint(6) DEFAULT NULL,
   `attack_accuracy` smallint(6) DEFAULT NULL,
-  `scream` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`attack_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=622 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,8 +37,60 @@ CREATE TABLE `attack` (
 
 LOCK TABLES `attack` WRITE;
 /*!40000 ALTER TABLE `attack` DISABLE KEYS */;
-INSERT INTO `attack` VALUES (2,'karate-chop',25,100,NULL),(3,'double-slap',10,85,NULL),(4,'comet-punch',15,85,NULL),(5,'mega-punch',20,85,NULL),(6,'pay-day',20,100,NULL),(7,'fire-punch',15,100,NULL),(8,'ice-punch',15,100,NULL),(9,'thunder-punch',15,100,NULL),(10,'scratch',35,100,NULL),(11,'vice-grip',30,100,NULL),(12,'guillotine',5,30,NULL),(13,'razor-wind',10,100,NULL),(14,'swords-dance',20,30,NULL),(15,'cut',30,95,NULL);
+INSERT INTO `attack` VALUES (2,'karate-chop',25,100),(3,'double-slap',10,85),(4,'comet-punch',15,85),(5,'mega-punch',20,85),(6,'pay-day',20,100),(7,'fire-punch',15,100),(8,'ice-punch',15,100),(9,'thunder-punch',15,100),(10,'scratch',35,100),(11,'vice-grip',30,100),(12,'guillotine',5,30),(13,'razor-wind',10,100),(14,'swords-dance',20,30),(15,'cut',30,95);
 /*!40000 ALTER TABLE `attack` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `join_attack_pokemon`
+--
+
+DROP TABLE IF EXISTS `join_attack_pokemon`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `join_attack_pokemon` (
+  `fk_attack_id` int(11) DEFAULT NULL,
+  `fk_pok_id` int(11) DEFAULT NULL,
+  KEY `fk_attack_id` (`fk_attack_id`),
+  KEY `fk_pok_id` (`fk_pok_id`),
+  CONSTRAINT `join_attack_pokemon_ibfk_1` FOREIGN KEY (`fk_attack_id`) REFERENCES `attack` (`attack_id`),
+  CONSTRAINT `join_attack_pokemon_ibfk_2` FOREIGN KEY (`fk_pok_id`) REFERENCES `pokemon` (`pok_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `join_attack_pokemon`
+--
+
+LOCK TABLES `join_attack_pokemon` WRITE;
+/*!40000 ALTER TABLE `join_attack_pokemon` DISABLE KEYS */;
+/*!40000 ALTER TABLE `join_attack_pokemon` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `join_users_pokemon`
+--
+
+DROP TABLE IF EXISTS `join_users_pokemon`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `join_users_pokemon` (
+  `fk_id_user` int(11) DEFAULT NULL,
+  `fk_pok_id` int(11) DEFAULT NULL,
+  KEY `fk_id_user` (`fk_id_user`),
+  KEY `fk_pok_id` (`fk_pok_id`),
+  CONSTRAINT `join_users_pokemon_ibfk_1` FOREIGN KEY (`fk_id_user`) REFERENCES `users` (`id`),
+  CONSTRAINT `join_users_pokemon_ibfk_2` FOREIGN KEY (`fk_pok_id`) REFERENCES `pokemon` (`pok_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `join_users_pokemon`
+--
+
+LOCK TABLES `join_users_pokemon` WRITE;
+/*!40000 ALTER TABLE `join_users_pokemon` DISABLE KEYS */;
+/*!40000 ALTER TABLE `join_users_pokemon` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -52,9 +103,10 @@ DROP TABLE IF EXISTS `pokemon`;
 CREATE TABLE `pokemon` (
   `pok_id` int(11) NOT NULL AUTO_INCREMENT,
   `pok_name` varchar(79) NOT NULL,
+  `pok_base_experience` int(11) DEFAULT NULL,
   `evolution` int(11) DEFAULT NULL,
-  `urlImage` varchar(255) NOT NULL,
-  `fk_attack_id` int(11) DEFAULT NULL,
+  `urlimage` varchar(2083) DEFAULT NULL,
+  `vie_base` int(11) NOT NULL,
   PRIMARY KEY (`pok_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=724 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -65,7 +117,7 @@ CREATE TABLE `pokemon` (
 
 LOCK TABLES `pokemon` WRITE;
 /*!40000 ALTER TABLE `pokemon` DISABLE KEYS */;
-INSERT INTO `pokemon` VALUES (1,'bulbasaur',NULL,'',NULL),(2,'ivysaur',3,'',NULL),(3,'venusaur',NULL,'',NULL),(4,'charmander',NULL,'',NULL),(5,'charmeleon',NULL,'',NULL),(6,'charizard',NULL,'',NULL),(7,'squirtle',NULL,'',NULL),(8,'wartortle',NULL,'',NULL),(9,'blastoise',NULL,'',NULL),(10,'caterpie',NULL,'',NULL),(11,'metapod',NULL,'',NULL),(12,'butterfree',NULL,'',NULL),(13,'weedle',NULL,'',NULL),(14,'kakuna',NULL,'',NULL),(15,'beedrill',NULL,'',NULL),(16,'pidgey',NULL,'',NULL),(17,'pidgeotto',NULL,'',NULL),(18,'pidgeot',NULL,'',NULL),(19,'rattata',NULL,'',NULL),(20,'raticate',NULL,'',NULL),(21,'spearow',NULL,'',NULL),(22,'fearow',NULL,'',NULL),(23,'ekans',NULL,'',NULL),(24,'arbok',NULL,'',NULL),(25,'pikachu',NULL,'',NULL),(26,'raichu',NULL,'',NULL),(27,'sandshrew',NULL,'',NULL),(28,'sandslash',NULL,'',NULL),(29,'nidoran-f',NULL,'',NULL),(30,'nidorina',NULL,'',NULL),(31,'nidoqueen',NULL,'',NULL),(32,'nidoran-m',NULL,'',NULL),(33,'nidorino',NULL,'',NULL),(34,'nidoking',NULL,'',NULL),(35,'clefairy',NULL,'',NULL),(36,'clefable',NULL,'',NULL),(37,'vulpix',NULL,'',NULL),(38,'ninetales',NULL,'',NULL),(39,'jigglypuff',NULL,'',NULL),(40,'wigglytuff',NULL,'',NULL),(41,'zubat',NULL,'',NULL),(42,'golbat',NULL,'',NULL),(43,'oddish',NULL,'',NULL),(44,'gloom',NULL,'',NULL),(45,'vileplume',NULL,'',NULL),(46,'paras',NULL,'',NULL),(47,'parasect',NULL,'',NULL),(48,'venonat',NULL,'',NULL),(49,'venomoth',NULL,'',NULL),(50,'diglett',NULL,'',NULL);
+INSERT INTO `pokemon` VALUES (1,'axew',64,2,NULL,0),(2,'fraxure',144,3,NULL,0),(3,'haxorus',243,NULL,NULL,0),(4,'piplup',63,5,NULL,0),(5,'prinplup',142,6,NULL,0),(6,'empoleon',239,NULL,NULL,0),(7,'lillipup',55,NULL,NULL,0),(8,'herdier',130,NULL,NULL,0),(9,'stoutland',225,NULL,NULL,0),(10,'sandile',58,NULL,NULL,0),(11,'krokorok',123,NULL,NULL,0),(12,'krookodile',234,NULL,NULL,0),(13,'shinx',53,NULL,NULL,0),(14,'luxio',127,NULL,NULL,0),(15,'luxray',235,NULL,NULL,0),(16,'tepig',62,NULL,NULL,0),(17,'pignite',146,NULL,NULL,0),(18,'emboar',238,NULL,NULL,0),(19,'cranidos',70,NULL,NULL,0),(20,'rampardos',173,NULL,NULL,0),(21,'turtwig',64,NULL,NULL,0),(22,'grotle',142,NULL,NULL,0),(23,'torterra',236,NULL,NULL,0);
 /*!40000 ALTER TABLE `pokemon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,8 +132,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `passwd` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fk_id_pok` int(11) DEFAULT NULL,
-  `xp_pok` int(11) DEFAULT NULL,
+  `money` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -104,4 +155,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-18 16:05:26
+-- Dump completed on 2019-07-23 22:19:28

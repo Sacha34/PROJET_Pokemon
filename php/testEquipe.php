@@ -1,6 +1,7 @@
 <?php
 
-include('Pokemon-le-jeu.html');
+
+
 
 // Connexion à la base de données
 try
@@ -19,6 +20,9 @@ while ($data = $reponse->fetch())
 
 $reponse->closeCursor();
 header('Location: https://trello.com/b/POCZywXV/pok%C3%A9mon');
+
+
+
 
 /*
 require('Equipe.php');

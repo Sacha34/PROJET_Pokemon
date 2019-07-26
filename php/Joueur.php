@@ -8,21 +8,21 @@ class Joueur
 
   private $username;
   private $password;
-  private $money;
+  private $coin;
 
   public function __construct(INT $dough)
   {
-    echo.$this->money = $dough;
+    echo.$this->coin = $dough;
   }
 
-  public function getMoney()
+  public function getCoin()
   {
-    return $this->money; // retourne le solde du gain accumulé
+    return $this->coin; // retourne le solde du gain accumulé
   }
 
-  public function setMoney(INT $coin)
+  public function setCoin(INT $coin)
   {
-    $this->money = $coin; // modifie le solde du gain accumulé
+    $this->coin = $money; // modifie le solde du gain accumulé
   }
 
 }

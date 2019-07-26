@@ -38,6 +38,36 @@
     opacity: 0.8;
   }
 
+  .password + .unmask {
+  position:absolute;
+  right: 68px; top: 7px;
+  width: 25px;
+  height: 25px;
+  text-indent: -9999px;
+  background: #aaa;
+  border-radius: 50%;
+}
+.password + .unmask:before {
+  content: "";
+  position:absolute;
+  top:4px; left:4px;
+  z-index:1;
+  width: 17px;
+  height: 17px;
+  background: #e3e3e3;
+  border-radius: 50%;
+}
+.password[type="text"] + .unmask:after {
+  content: "";
+  position:absolute;
+  top:6px; left:6px
+  z-index:2;
+  width: 13px;
+  height: 13px;
+  background: #aaa;
+  border-radius: 50%;
+}
+
   /* Extra styles for the cancel button */
   .cancelbtn {
     width: auto;
@@ -139,7 +169,7 @@
         <h1>Pokemon, le jeu.</h1> <!--titre principal-->
         <h3>Go Catch 'em All !</h3> <!--sous-titre titre principal-->
       </header>
-
+<!-->
   <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
 
   <div id="id01" class="modal">
@@ -154,7 +184,14 @@
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="uname" required>
 
-        <label for="psw"><b>Password</b></label>
+        <label for="psw"><b>Password</b></label><form action="minichat_post.php" method="post">
+      <p>
+        <label for="pseudo">Pseudo</label> : <input type="text" name="pseudo" id="pseudo" /><br />
+        <label for="message">Message</label> :  <input type="text" name="message" id="message" /><br />
+        <input type="submit" value="Envoyer" />
+	    </p>
+    </form>
+
         <input type="password" placeholder="Enter Password" name="psw" required>
 
         <button type="submit">Login</button>
@@ -170,6 +207,14 @@
     </form>
   </div>
 
+  <form action="testEquipe.php" method="post">
+    <p>
+      <label for="login">Username</label> : <input type="text" name="username" id="username" /><br />
+      <label for="password">Your password</label> : <input type="password" value="" placeholder="Enter Password" id="password">
+      <button class="unmask" type="button" title="Mask/Unmask password to check content">Unmask</button>
+    </p>
+  </form>
+
   <script>
   // Get the modal
   var modal = document.getElementById('id01');
@@ -181,6 +226,16 @@
       }
   }
   </script>
+<!-->
+
+<form action="testEquipe.php" method="post">
+  <p>
+    <label for="pseudo">username</label> : <input type="text" name="pseudo" id="pseudo" /><br />
+    <label for="message">password</label> :  <input type="text" name="message" id="message" /><br />
+    <input type="submit" value="Envoyer" />
+  </p>
+</form>
+
 
   <footer>
   <!-- Copyright -->

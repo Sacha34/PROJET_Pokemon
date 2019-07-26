@@ -6,8 +6,6 @@
 class Joueur
 {
 
-  private $username;
-  private $password;
   private $coin;
 
   public function __construct(INT $dough)
@@ -15,15 +13,17 @@ class Joueur
     echo.$this->coin = $dough;
   }
 
-  public function getCoin()
-  {
-    return $this->coin; // retourne le solde du gain accumulé
-  }
+    public function getMoney() : INT
+    {
+      $this->coin
+      return $this
+    }
 
-  public function setCoin(INT $coin)
-  {
-    $this->coin = $money; // modifie le solde du gain accumulé
-  }
+      public function setMoney(INT $money) : INT
+      {
+        $this->coin = $money;
+        return $this->
+      }
 
 }
 

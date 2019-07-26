@@ -7,12 +7,15 @@ class Connexion
 {
   private $identification = array($username => '');
   private $key = array($passwd => '');
+  private $coin;
 
 
   public function __construct(string $username, string $passwd) : string
   {
     $this->identification [] = $username;
+    return $this->username;
     $this->key [] = $passwd;
+    return $this->passwd;
 
   }
 
@@ -25,7 +28,9 @@ class Connexion
   public function setSignIn(string $username, string $passwd) : string
   {
     $this->identification = $username;
+    return $this->username;
     $this->key = $passwd;
+    return $this->passwd;
   }
 
 }

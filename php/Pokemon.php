@@ -69,13 +69,14 @@ class Pokemon
         return $this->abilities;
     }
 
-    public function listPokemon(){
+    public function listPokemon(array $pokemon){
         echo "<pre>";
         echo "<img alt='pokemon' src=$urlImage>";
         echo $pok_name;
         echo "Vie: $vie_base";
         echo "Xp: $xp";
         echo "Evolution: $evolution";
+        echo "Ces attaques: " . array($abilities);
         echo "</pre>";
 
     }

@@ -12,17 +12,24 @@ require_once("Pokemon.php");
     </head>
     <body>
 
-    <form action="main.php" method="post">
+    <!--<form action="main.php" method="post">
         <input type="submit" value="attaquer" name="attack1">
     </form>
     <form action="main.php" method="post">
         <input type="submit" value="attaquer" name="attack2">
-    </form>
+    </form>-->
     </body>
     </html>
 
 
 <?php
+$pokemon=["attack1","attack2","attack3","attack4"];
+$pikachu = new Pokemon("Pikachu", 100, 2, 0);
+$raichu = new Pokemon("Raichu", 100, 2, 0);
+
+$pikachu->listPokemon($pokemon);
+
+/*
 if(isset($_POST['attack1'])) {
     $pikachu = new Pokemon("Pikachu", 100, 2, 0);
     $raichu = new Pokemon("Raichu", 100, 2, 0);
@@ -45,6 +52,6 @@ if(isset($_POST['attack1'])) {
     $pikachu->getVie();
     $raichu->winXp();
     $raichu->getXp();
-}
+}*/
 
-
+?>
